@@ -1,6 +1,7 @@
 import { RequestListener } from 'http';
 import { saveFile } from './saveFile';
 import { serveFile } from './serveFile';
+import {existsSync} from "fs";
 
 export const handleRequest: RequestListener = (request, response) => {
   if (request.method === 'GET') {

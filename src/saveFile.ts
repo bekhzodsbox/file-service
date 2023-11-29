@@ -8,6 +8,7 @@ export const saveFile: RequestListener = (request, response) => {
   const { url } = request;
   const id = parseId(url);
   const filePath = resolve(ROOT_PATH, id);
+  console.log('Saving file on path: ', filePath)
   const fileWriteStream = createWriteStream(filePath);
   request.pipe(fileWriteStream);
   request.on('end', () => {
