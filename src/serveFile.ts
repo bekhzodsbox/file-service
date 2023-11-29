@@ -13,11 +13,16 @@ export const serveFile: RequestListener = (request, response) => {
     if (!existsSync(filePath)) {
         response.statusCode = 500;
         response.statusMessage = 'FILE_NOT_FOUND';
+        console.log('Failed on downloading file: ', filePath)
         response.end();
         return response;
     } else {
         const fileReadStream = createReadStream(filePath);
         fileReadStream.pipe(response);
+        response.on('finish', ()=>{
+            console.log('Successfully downloaded: ', filePath)
+            response.end();
+        });
     }
 
 };

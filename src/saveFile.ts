@@ -12,6 +12,7 @@ export const saveFile: RequestListener = (request, response) => {
   const fileWriteStream = createWriteStream(filePath);
   request.pipe(fileWriteStream);
   request.on('end', () => {
+    console.log('Successfully saved file with path: ', filePath);
     response.end();
   });
 };
